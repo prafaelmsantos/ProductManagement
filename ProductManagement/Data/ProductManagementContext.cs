@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using ProductManagement.Models;
 
 namespace ProductManagement.Data
@@ -20,13 +21,27 @@ namespace ProductManagement.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>();
-            modelBuilder.Entity<Product>();
-            modelBuilder.Entity<Address>();
-            modelBuilder.Entity<Client>();
-            modelBuilder.Entity<ItemOrder>();
-            modelBuilder.Entity<Request>();
-            modelBuilder.Entity<User>();
+            modelBuilder.Entity<Category>().ToTable("Category");
+            modelBuilder.Entity<Product>().ToTable("Product");
+            modelBuilder.Entity<Client>()
+                .OwnsMany(c => c.Addresses, e =>
+                {
+                    e.WithOwner().HasForeignKey("UserId");
+                    e.HasKey("UserId", "AddressId");
+                });
+            modelBuilder.Entity<User>().Property(u => u.RegistrationDate)
+                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            modelBuilder.Entity<Product>().Property(p => p.Stock)
+                .HasDefaultValue(0);
+            modelBuilder.Entity<Request>()
+                .OwnsOne(p => p.DeliveryAddress, e =>
+                {
+                    e.Ignore(e => e.AddressId);
+                    e.Ignore(e => e.Selected);
+                    e.ToTable("Request");
+                });
+            modelBuilder.Entity<ItemOrder>()
+                .HasKey(ip => new { ip.RequestId, ip.ProductId });
         }
     }
 }
