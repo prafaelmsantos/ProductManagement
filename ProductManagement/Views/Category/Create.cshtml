@@ -11,12 +11,12 @@
 
 <form asp-action="Create" class="row">
     <input type="hidden" asp-for="@Model.CategoryId">
-    <div class="form-group col-sm-8 col-lg-4">
+    <div class="form-group col-sm-8 col-lg-8">
         <label asp-for="@Model.Name">Nome:</label><br>
         <input asp-for="@Model.Name" class="form-control" autofocus>
         <span asp-validation-for="@Model.Name" class="text-danger"></span>
     </div>
-    <div class="form-group col-sm-8 col-lg-4 mt-3">
+    <div class="form-group col-sm-8 col-lg-8 mt-3">
         <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
         <button class="btn btn-primary" type="submit">Guardar</button>
     </div>
