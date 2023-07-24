@@ -15,3 +15,5 @@
 *.dll
 *.dll
 *.dll
+.vs/ProductManagement/v17/.suo
+*.cache
