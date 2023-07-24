@@ -1,8 +1,10 @@
 ﻿@{
-    var controllerAtual = ViewContext.RouteData.Values["controller"].ToString();
-    var classeMenuPrincipal = controllerAtual == "Home" ? "active" : "";
-    var classeMenuProdutos = controllerAtual == "Product" ? "active" : "";
-    var classeMenuCategorias = controllerAtual == "Category" ? "active" : "";
+    var currentController = ViewContext.RouteData.Values["controller"].ToString();
+    var classeMenuHome = currentController == "Home" ? "active" : "";
+    var classeMenuProduct = currentController == "Product" ? "active" : "";
+    var classeMenuCategory = currentController == "Category" ? "active" : "";
+    var classeMenuClient = currentController == "Client" ? "active" : "";
+    var classeMenuAddress = currentController == "Address" ? "active" : "";
 }
 
 <!DOCTYPE html>
@@ -26,14 +28,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link @classeMenuPrincipal" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @classeMenuHome" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @classeMenuProdutos" asp-controller="Product" asp-action="Index">Produtos</a>
+                            <a class="nav-link @classeMenuProduct" asp-controller="Product" asp-action="Index">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @classeMenuCategorias" asp-controller="Category"
+                            <a class="nav-link @classeMenuCategory" asp-controller="Category"
                                asp-action="Index">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @classeMenuClient" asp-controller="Client"
+                               asp-action="Index">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @classeMenuAddress" asp-controller="Address"
+                               asp-action="Index">Endereços</a>
                         </li>
                     </ul>
                 </div>

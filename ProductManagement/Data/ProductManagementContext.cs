@@ -22,18 +22,23 @@ namespace ProductManagement.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().ToTable("Category");
+
             modelBuilder.Entity<Product>().ToTable("Product");
+
             modelBuilder.Entity<Client>()
                 .OwnsMany(c => c.Addresses, e =>
                 {
                     e.WithOwner().HasForeignKey("UserId");
                     e.HasKey("UserId", "AddressId");
                 });
+
             modelBuilder.Entity<User>().Property(u => u.RegistrationDate)
                 .HasDefaultValueSql("getdate()")
-                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore); // Ignora dados deste campo quando POST/PUT
+
             modelBuilder.Entity<Product>().Property(p => p.Stock)
                 .HasDefaultValue(0);
+
             modelBuilder.Entity<Request>()
                 .OwnsOne(p => p.DeliveryAddress, e =>
                 {
@@ -41,8 +46,9 @@ namespace ProductManagement.Data
                     e.Ignore(e => e.Selected);
                     e.ToTable("Request");
                 });
+
             modelBuilder.Entity<ItemOrder>()
-                .HasKey(ip => new { ip.RequestId, ip.ProductId });
+                .HasKey(ip => new { ip.RequestId, ip.ProductId }); // chave composta
         }
     }
 }

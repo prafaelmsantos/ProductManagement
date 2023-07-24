@@ -1,0 +1,19 @@
+@model Address
+@{
+    ViewBag.Subtitle = "Apagar Endereço";
+    var client = ViewBag.Client as Client;
+}
+
+<h1 class="text-primary">@ViewBag.Subtitle</h1>
+<hr>
+<h4>Deseja realmente apagar o endereço<br> 
+    <span class="text-danger">@Model.CompleteAddress?</span></h4>
+
+<form asp-action="Delete" class="w-25">
+    <input type="hidden" asp-for="@Model.AddressId">
+    <input type="hidden" asp-for="@client.UserId" name="UserId">
+    <div class="mt-3">
+        <a asp-action="Index" asp-route-cid="@client.UserId" class="btn btn-success">Não</a>
+        <button class="btn btn-danger" type="submit">Sim</button>
+    </div>
+</form>

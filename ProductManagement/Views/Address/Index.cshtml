@@ -1,0 +1,53 @@
+@model IEnumerable<Address>
+@{
+    var client = ViewBag.Client as Client;
+    ViewBag.Subtitle = $"Endereços de <b>{client.Name}</b>";
+}
+
+<header class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="text-primary">@Html.Raw(ViewBag.Subtitle)</h1>
+    </div>
+    <div>
+        <a asp-action="Create" asp-route-cid="@client.UserId" class="btn btn-primary">Novo Endereço</a>
+    </div>
+</header>
+<hr>
+
+<partial name="_Message"></partial>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Rua</th>
+                <th>Nº</th>
+                <th>Codigo Postal</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>País</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var address in Model)
+            {
+                <tr>
+                    <td>@address.Street</td>
+                    <td>@address.Number</td>
+                    <td>@address.PostalCode</td>
+                    <td>@address.City</td>
+                    <td>@address.Country</td>
+                    <td>
+                        <a asp-action="Create" asp-route-cid="@client.UserId" asp-route-eid="@address.AddressId" class="btn btn-sm btn-secondary">Alterar</a>
+                        <a asp-action="Delete" asp-route-cid="@client.UserId" asp-route-eid="@address.AddressId" class="btn btn-sm btn-danger">Apagar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não há nenhum endereço registado para este cliente.</p>
+}
