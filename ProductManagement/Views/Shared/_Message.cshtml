@@ -1,0 +1,19 @@
+﻿
+@if (TempData.ContainsKey("message"))
+{
+    var message = Message.Desserializar(TempData["message"].ToString());
+    @if (message.Type == MessageType.Error)
+    {
+        <div class="alert alert-warning mt-3 alert-dismissible fade show" role="alert">
+            @message.Text
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success mt-3 alert-dismissible fade show" role="alert">
+            @message.Text
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    }
+}

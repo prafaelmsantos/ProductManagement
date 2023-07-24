@@ -1,0 +1,16 @@
+﻿@model Product
+@{
+    ViewBag.Subtitle = "Eliminar Produto";
+}
+
+<h1 class="text-primary">@ViewBag.Subtitle</h1>
+<hr>
+<h4>Tem a certeza que pretende apagar o produto <span class="text-danger">@Model.Name?</span></h4>
+
+<form asp-action="Delete" class="w-25">
+    <input type="hidden" asp-for="@Model.ProductId">
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-success">Não</a>
+        <button class="btn btn-danger" type="submit">Sim</button>
+    </div>
+</form>
