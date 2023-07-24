@@ -146,7 +146,9 @@ namespace ProductManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("RegistrationDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
 
                     b.HasKey("UserId");
 

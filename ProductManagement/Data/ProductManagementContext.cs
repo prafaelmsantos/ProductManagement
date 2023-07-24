@@ -30,6 +30,7 @@ namespace ProductManagement.Data
                     e.HasKey("UserId", "AddressId");
                 });
             modelBuilder.Entity<User>().Property(u => u.RegistrationDate)
+                .HasDefaultValueSql("getdate()")
                 .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             modelBuilder.Entity<Product>().Property(p => p.Stock)
                 .HasDefaultValue(0);

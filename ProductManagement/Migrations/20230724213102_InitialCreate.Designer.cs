@@ -12,7 +12,7 @@ using ProductManagement.Data;
 namespace ProductManagement.Migrations
 {
     [DbContext(typeof(ProductManagementContext))]
-    [Migration("20230724194712_InitialCreate")]
+    [Migration("20230724213102_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,7 +148,9 @@ namespace ProductManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("RegistrationDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
 
                     b.HasKey("UserId");
 
