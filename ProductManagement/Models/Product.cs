@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProductManagement.Models
 {
+    [Table("Product")]
     public class Product
     {
         [Key]
@@ -15,9 +16,10 @@ namespace ProductManagement.Models
 
         public double Price { get; set; }
 
-        [ForeignKey("Category")]
+        
         public int CategoryId { get; set; }
 
+        [ForeignKey("CategoryId")]
         public Category Category { get; set; }
     }
 }

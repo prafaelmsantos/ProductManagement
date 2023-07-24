@@ -29,3 +29,5 @@
 *.pdb
 *.dll
 *.dll
+.vs/ProductManagement/v17/.suo
+*.v2
