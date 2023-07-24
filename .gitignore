@@ -24,3 +24,8 @@
 *.v2
 .vs/ProductManagement/v17/.suo
 .vs/ProductManagement/v17/.suo
+*.pdb
+*.dll
+*.pdb
+*.dll
+*.dll
