@@ -28,10 +28,10 @@ namespace ProductManagement.Migrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Phone = table.Column<int>(type: "int", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Telemovel = table.Column<int>(type: "int", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "getdate()")
                 },
                 constraints: table =>
@@ -88,7 +88,7 @@ namespace ProductManagement.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Number = table.Column<int>(type: "int", nullable: false),
-                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PostalCode = table.Column<int>(type: "int", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Selected = table.Column<bool>(type: "bit", nullable: false)
@@ -116,7 +116,7 @@ namespace ProductManagement.Migrations
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     DeliveryAddress_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DeliveryAddress_Number = table.Column<int>(type: "int", nullable: true),
-                    DeliveryAddress_PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeliveryAddress_PostalCode = table.Column<int>(type: "int", nullable: true),
                     DeliveryAddress_City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DeliveryAddress_Country = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

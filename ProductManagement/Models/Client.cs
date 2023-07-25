@@ -10,7 +10,7 @@ namespace ProductManagement.Models
     public class Client : User
     {
 
-        [Required]
+        [Required, Range(111111111, 999999999)]
         public int NIF { get; set; }
 
         public DateTime BirthDate { get; set; }

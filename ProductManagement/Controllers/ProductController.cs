@@ -40,7 +40,7 @@ namespace ProductManagement.Controllers
             var categoriesSelectList = new SelectList(categories,
                 nameof(Category.CategoryId), nameof(Category.Name));
 
-            ViewBag.Categories = categoriesSelectList;
+            ViewData["Categories"] = categoriesSelectList;
 
             if (id.HasValue)
             {

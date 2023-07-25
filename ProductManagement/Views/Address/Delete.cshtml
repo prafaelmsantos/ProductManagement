@@ -1,10 +1,10 @@
 @model Address
 @{
-    ViewBag.Subtitle = "Apagar Endereço";
-    var client = ViewBag.Client as Client;
+    ViewData["Subtitle"] = "Apagar Endereço";
+    var client = ViewData["Client"] as Client;
 }
 
-<h1 class="text-primary">@ViewBag.Subtitle</h1>
+<h1 class="text-primary">@ViewData["Subtitle"]</h1>
 <hr>
 <h4>Deseja realmente apagar o endereço<br> 
     <span class="text-danger">@Model.CompleteAddress?</span></h4>

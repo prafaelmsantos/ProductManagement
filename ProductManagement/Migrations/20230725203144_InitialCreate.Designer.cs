@@ -12,7 +12,7 @@ using ProductManagement.Data;
 namespace ProductManagement.Migrations
 {
     [DbContext(typeof(ProductManagementContext))]
-    [Migration("20230724213102_InitialCreate")]
+    [Migration("20230725203144_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,15 +137,16 @@ namespace ProductManagement.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("Nome");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
                     b.Property<int>("Phone")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Telemovel");
 
                     b.Property<DateTime?>("RegistrationDate")
                         .ValueGeneratedOnAdd()
@@ -224,9 +225,8 @@ namespace ProductManagement.Migrations
                             b1.Property<int>("Number")
                                 .HasColumnType("int");
 
-                            b1.Property<string>("PostalCode")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
+                            b1.Property<int>("PostalCode")
+                                .HasColumnType("int");
 
                             b1.Property<string>("Street")
                                 .IsRequired()
@@ -275,9 +275,8 @@ namespace ProductManagement.Migrations
                             b1.Property<int>("Number")
                                 .HasColumnType("int");
 
-                            b1.Property<string>("PostalCode")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
+                            b1.Property<int>("PostalCode")
+                                .HasColumnType("int");
 
                             b1.Property<bool>("Selected")
                                 .HasColumnType("bit");

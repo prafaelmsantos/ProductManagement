@@ -26,7 +26,7 @@ namespace ProductManagement.Controllers
                 if (client != null)
                 {
                     _context.Entry(client).Collection(c => c.Addresses).Load();
-                    ViewBag.Client = client;
+                    ViewData["Client"] = client;
                     return View(client.Addresses);
                 }
                 else
@@ -50,7 +50,7 @@ namespace ProductManagement.Controllers
                 var client = await _context.Clients.FindAsync(cid);
                 if (client != null)
                 {
-                    ViewBag.Client = client;
+                    ViewData["Client"] = client;
                     if (eid.HasValue)
                     {
                         _context.Entry(client).Collection(c => c.Addresses).Load();
@@ -78,7 +78,7 @@ namespace ProductManagement.Controllers
             else
             {
                 TempData["message"] = Message.Serializar("Nenhum proprietário de endereços foi informado.", MessageType.Error);
-                return RedirectToAction("Index", "Cliente");
+                return RedirectToAction("Index", "Client");
             }
         }
 
@@ -95,7 +95,7 @@ namespace ProductManagement.Controllers
             if (userId.HasValue)
             {
                 var client = await _context.Clients.FindAsync(userId);
-                ViewBag.Client = client; 
+                ViewData["Client"] = client;     
 
                 if (ModelState.IsValid)
                 {
@@ -136,9 +136,8 @@ namespace ProductManagement.Controllers
                     }
                     else
                     {
-                        var addressId = client.Addresses.Count() > 0 ? client.Addresses.Max(e => e.AddressId) + 1 : 1;
-
-                        address.AddressId = addressId;
+                        //var addressId = client.Addresses.Count() > 0 ? client.Addresses.Max(e => e.AddressId) + 1 : 1;
+                        //address.AddressId = addressId;
 
                         _context.Clients.FirstOrDefault(c => c.UserId == userId).Addresses.Add(address);
                         if (await _context.SaveChangesAsync() > 0)
@@ -188,7 +187,7 @@ namespace ProductManagement.Controllers
                 return RedirectToAction("Index", new { cid = cid });
             }
 
-            ViewBag.Client = client;
+            ViewData["Client"] = client;
             return View(address);
         }
 

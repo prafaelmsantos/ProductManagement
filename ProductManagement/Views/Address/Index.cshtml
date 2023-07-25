@@ -1,12 +1,12 @@
 @model IEnumerable<Address>
 @{
-    var client = ViewBag.Client as Client;
-    ViewBag.Subtitle = $"Endereços de <b>{client.Name}</b>";
+    var client = ViewData["Client"] as Client;
+    ViewData["Subtitle"] = $"Endereços de {client.Name}";
 }
 
 <header class="d-flex justify-content-between align-items-center">
     <div>
-        <h1 class="text-primary">@Html.Raw(ViewBag.Subtitle)</h1>
+        <h1 class="text-primary">@Html.Raw(ViewData["Subtitle"])</h1>
     </div>
     <div>
         <a asp-action="Create" asp-route-cid="@client.UserId" class="btn btn-primary">Novo Endereço</a>
@@ -24,9 +24,9 @@
                 <th>Rua</th>
                 <th>Nº</th>
                 <th>Codigo Postal</th>
-                <th>Bairro</th>
                 <th>Cidade</th>
                 <th>País</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>

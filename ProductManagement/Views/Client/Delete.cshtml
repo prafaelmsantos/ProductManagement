@@ -1,9 +1,9 @@
 @model Client
 @{
-    ViewBag.Subtitle = "Apagar Cliente";
+    ViewData["Subtitle"] = "Apagar Cliente";
 }
 
-<h1 class="text-primary">@ViewBag.Subtitle</h1>
+<h1 class="text-primary">@ViewData["Subtitle"]</h1>
 <hr>
 <h4>Deseja realmente excluir o cliente <span class="text-danger">@Model.Name?</span></h4>
 

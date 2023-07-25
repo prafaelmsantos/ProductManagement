@@ -1,16 +1,17 @@
 @model Address
 @{
-    var client = ViewBag.Client as Client;
+    var client = ViewData["Client"] as Client;
+
     if (Context.Request.RouteValues.ContainsKey("eid"))
-        ViewBag.Subtitle = $"Atualização do Endereço de <b>{client.Name}</b>";
+        ViewData["Subtitle"] = $"Atualização do Endereço de <b>{client.Name}</b>";
     else
-        ViewBag.Subtitle = $"Registo de Endereço de <b>{client.Name}</b>";
+        ViewData["Subtitle"] = $"Registo de Endereço de <b>{client.Name}</b>";
 }
 
-<h1 class="text-primary">@Html.Raw(ViewBag.Subtitulo)</h1>
+<h1 class="text-primary">@Html.Raw(ViewData["Subtitle"].ToString())</h1>
 <hr>
 
-<form asp-action="Create" class="row">
+<form asp-action="Create" class="row mt-5">
     <input type="hidden" asp-for="@Model.AddressId">
     <input type="hidden" value="@client.UserId" name="UserId" id="UserId">
 
@@ -53,7 +54,7 @@
         <span asp-validation-for="@Model.Selected" class="text-danger"></span>
     </div>
     <div class="w-100"></div>
-    <div class="mt-3">
+    <div class="form-group col-sm-8 col-lg-8 mt-3">
         <a asp-action="Index" asp-route-cid="@client.UserId" class="btn btn-outline-secondary">Cancelar</a>
         <button class="btn btn-primary" type="submit">Guardar</button>
     </div>

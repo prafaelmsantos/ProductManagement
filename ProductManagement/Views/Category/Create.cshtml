@@ -1,15 +1,15 @@
 ﻿@model Category
 @{
     if (Context.Request.RouteValues.ContainsKey("id"))
-        ViewBag.Subtitle = "Atualizar Categoria";
+        ViewData["Subtitle"] = "Atualizar Categoria";
     else
-        ViewBag.Subtitle = "Criar Categoria";
+        ViewData["Subtitle"] = "Criar Categoria";
 }
 
-<h1 class="text-primary">@ViewBag.Subtitle</h1>
+<h1 class="text-primary">@ViewData["Subtitle"]</h1>
 <hr>
 
-<form asp-action="Create" class="row">
+<form asp-action="Create" class="row mt-5">
     <input type="hidden" asp-for="@Model.CategoryId">
     <div class="form-group col-sm-8 col-lg-8">
         <label asp-for="@Model.Name">Nome:</label><br>

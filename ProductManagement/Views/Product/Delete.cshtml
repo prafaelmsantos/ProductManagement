@@ -1,9 +1,9 @@
 ﻿@model Product
 @{
-    ViewBag.Subtitle = "Eliminar Produto";
+    ViewData["Subtitle"] = "Eliminar Produto";
 }
 
-<h1 class="text-primary">@ViewBag.Subtitle</h1>
+<h1 class="text-primary">@ViewData["Subtitle"]</h1>
 <hr>
 <h4>Tem a certeza que pretende apagar o produto <span class="text-danger">@Model.Name?</span></h4>
 

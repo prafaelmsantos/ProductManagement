@@ -1,9 +1,9 @@
 ﻿@model Category
 @{
-    ViewBag.Subtitle = "Eliminar Categoria";
+    ViewData["Subtitle"] = "Eliminar Categoria";
 }
 
-<h1 class="text-primary">@ViewBag.Subtitle</h1>
+<h1 class="text-primary">@ViewData["Subtitle"]</h1>
 <hr>
 <h4>Tem a certeza que pretende eliminar a categoria <span class="text-danger">@Model.Name?</span></h4>
 

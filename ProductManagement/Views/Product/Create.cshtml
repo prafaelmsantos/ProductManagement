@@ -1,15 +1,17 @@
 ﻿@model Product
 @{
+    var categories = ViewData["Categories"];
+
     if (Context.Request.RouteValues.ContainsKey("id"))
-        ViewBag.Subtitle = "Atualizar Produto";
+        ViewData["Subtitle"] = "Atualizar Produto";
     else
-        ViewBag.Subtitle = "Criar Produto";
+        ViewData["Subtitle"] = "Criar Produto";
 }
 
-<h1 class="text-primary">@ViewBag.Subtitle</h1>
+<h1 class="text-primary">@ViewData["Subtitle"]</h1>
 <hr>
 
-<form asp-action="Create" class="row">
+<form asp-action="Create" class="row mt-5">
     <input type="hidden" asp-for="@Model.ProductId">
     <div class="form-group col-sm-8 col-lg-8">
         <label asp-for="@Model.Name">Nome:</label><br>
@@ -20,7 +22,7 @@
         <div class="form-group col-sm-8 col-lg-8">
             <label asp-for="@Model.CategoryId">Categoria:</label><br>
             <select asp-for="@Model.CategoryId" class="form-control"
-                    asp-items="@(IEnumerable<SelectListItem>)ViewBag.Categories"></select>
+                    asp-items="@(IEnumerable<SelectListItem>)categories"></select>
             <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
         </div>
         <div class="form-group col-sm-4 col-lg-4">

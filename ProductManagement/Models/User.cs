@@ -11,16 +11,16 @@ namespace ProductManagement.Models
         [Key]
         public int UserId { get; set; }
 
-        [Required, MaxLength(128)]
+        [Required, MaxLength(128), Column("Nome")]
         public string Name { get; set; }
 
         [Required, MaxLength(128)]
         public string Email { get; set; }
 
-        [Required, MaxLength(128)]
+        [MaxLength(128)]
         public string Password { get; set; }
 
-        [Required]
+        [Required, Range(111111111, 999999999), Column("Telemovel")]
         public int Phone { get; set; }
 
         [ReadOnly(true)]

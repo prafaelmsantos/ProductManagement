@@ -5,19 +5,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProductManagement.Models
 {
-    [Owned, Table("Address")]
+    [Table("Address")]
     public class Address
     {
+        [Key]
         public int AddressId { get; set; }
 
         [Required]
         public string Street { get; set; }
 
-        [Required]
+        [Required, Range(1, 9999)]
         public int Number { get; set; }
 
-        [Required]
-        public string PostalCode { get; set; }
+        [Required, Range(1111111, 9999999)]
+        public int PostalCode { get; set; }
 
         [Required]
         public string City { get; set; }
